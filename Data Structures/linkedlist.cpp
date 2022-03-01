@@ -156,6 +156,24 @@ void RecursionReversePrint(Node* temp)
     RecursionReversePrint(temp->next);
     cout<<temp->data<<' ';
 }
+
+void RecursionReverse(Node* temp)
+{
+    // Logic - In forward journey, we traverse till the end of LL. When we reach last element, we make head point to last element.
+    // In backward journey, for every current element we do two things -
+    // 1. The original next of the current element is made to point to the current element.
+    // 2. The next of the current element is made to point to NULL.
+    // This means for every step in backward journey, the element up to that point is reversed. When backward journey ends, all elements are reversed.
+
+    if(temp->next == nullptr){
+        head = temp;
+        return;
+    }
+    RecursionReverse(temp->next);
+    Node* temp_temp = temp->next;
+    temp_temp->next = temp;
+    temp->next = nullptr;
+}
 int main()
 {
     // Initially, there is no linked list, so head is a null pointer.
@@ -200,4 +218,9 @@ int main()
     RecursionPrint(head);
     cout<<'\n';
     RecursionReversePrint(head);
+
+    // 9. Reverse Linked List using recursion
+    RecursionReverse(head);
+    cout<<'\n';
+    display();
 }
