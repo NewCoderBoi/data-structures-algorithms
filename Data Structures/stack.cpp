@@ -33,8 +33,13 @@ void Pop(){
     top--;
 }
 
+void Top(){
+    // Logic - Prints the element pointed by top
+    cout<<array_stack[top]<<'\n'; 
+}
+
 void Print(){ //Only for testing purposes, normally not present in stack implementation
-    for(int i=0;i<MAX_SIZE;i++){
+    for(int i=0;i<=top;i++){
         cout<<array_stack[i]<<' ';
     }
     cout<<'\n';
@@ -46,6 +51,7 @@ int main(){
     Push(3);
     Push(4);
     Push(5);
+    Top();
     Pop();
     Print();
 
