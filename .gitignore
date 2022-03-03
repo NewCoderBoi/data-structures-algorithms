@@ -3,3 +3,5 @@
 *.txt
 Specific Problems
 *.xlsx
+test.cpp
+.vscode
