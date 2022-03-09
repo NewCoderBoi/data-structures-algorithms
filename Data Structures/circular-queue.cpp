@@ -22,7 +22,7 @@ void Push(int x){
         cout<<"Queue is full"<<'\n';
         return;
     }
-    if(front==-1) front=0;
+    if(isEmpty()) front=0;
     rear = (rear+1)%10;
     circularQueue[rear] = x;
 }
