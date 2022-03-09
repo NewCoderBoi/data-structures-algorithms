@@ -44,9 +44,10 @@ void ArrayPeek(){
 }
 
 void ArrayDisplay(){  //Not a real queue function
-    while(ArrayFront<=ArrayRear){
-        cout<<ArrayQueue[ArrayFront]<<' ';
-        ArrayFront++;
+    int temp = ArrayFront;
+    while(temp<=ArrayRear){
+        cout<<ArrayQueue[temp]<<' ';
+        temp++;
     }
     cout<<'\n';
 }
