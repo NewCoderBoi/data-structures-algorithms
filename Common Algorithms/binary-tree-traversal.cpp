@@ -74,6 +74,8 @@ void IterLevelOrder(){
     }
 }
 
+// BFS - Time Complexity - O(n) Space complexity - O(n) in average case, O(1) in best case.
+
 // Depth First Search is of 3 types -
 // 1. Inorder : Order of printing is Left, Root, Right.
 // Logic - We are traversing all the way to left, then printing first left, then root, then right.
@@ -101,6 +103,8 @@ void Postorder(Node* root){
     if(root->right != nullptr) Postorder(root->right);
     cout<<root->data<<' ';
 }
+
+// DFS - Time Complexity - O(n), Space complexity - O(log n) in avg case, O(n) in worst case.
 
 int main(){
     Iter_Insert(20);
