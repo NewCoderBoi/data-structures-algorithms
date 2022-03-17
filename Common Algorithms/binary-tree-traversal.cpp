@@ -74,6 +74,34 @@ void IterLevelOrder(){
     }
 }
 
+// Depth First Search is of 3 types -
+// 1. Inorder : Order of printing is Left, Root, Right.
+// Logic - We are traversing all the way to left, then printing first left, then root, then right.
+
+void Inorder(Node* root){
+    if(root->left != nullptr) Inorder(root->left);
+    cout<<root->data<<' ';
+    if(root->right != nullptr) Inorder(root->right);
+}
+
+// 2. Preorder : Order of printing is Root, Left, Right
+// Logic - We are printing the root, then traversing left first, then right, everytime printing the root element.
+
+void Preorder(Node* root){
+    cout<<root->data<<' ';
+    if(root->left != nullptr) Preorder(root->left);
+    if(root->right != nullptr) Preorder(root->right);
+}
+
+// 3. Postorder : Order of printng is Left, Right, Root.
+// Logic - We are first traversing left, then right, then printing root.
+
+void Postorder(Node* root){
+    if(root->left != nullptr) Postorder(root->left);
+    if(root->right != nullptr) Postorder(root->right);
+    cout<<root->data<<' ';
+}
+
 int main(){
     Iter_Insert(20);
     Iter_Insert(15);
@@ -98,4 +126,10 @@ int main(){
     LevelOrder(p_root);
     cout<<'\n';
     IterLevelOrder();
+    cout<<'\n';
+    Inorder(p_root);
+    cout<<'\n';
+    Preorder(p_root);
+    cout<<'\n';
+    Postorder(p_root);
 }
