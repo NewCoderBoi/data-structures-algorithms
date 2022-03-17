@@ -81,6 +81,7 @@ void IterLevelOrder(){
 // Logic - We are traversing all the way to left, then printing first left, then root, then right.
 
 void Inorder(Node* root){
+    if(root == nullptr) return;
     if(root->left != nullptr) Inorder(root->left);
     cout<<root->data<<' ';
     if(root->right != nullptr) Inorder(root->right);
@@ -90,6 +91,7 @@ void Inorder(Node* root){
 // Logic - We are printing the root, then traversing left first, then right, everytime printing the root element.
 
 void Preorder(Node* root){
+    if(root == nullptr) return;
     cout<<root->data<<' ';
     if(root->left != nullptr) Preorder(root->left);
     if(root->right != nullptr) Preorder(root->right);
@@ -99,6 +101,7 @@ void Preorder(Node* root){
 // Logic - We are first traversing left, then right, then printing root.
 
 void Postorder(Node* root){
+    if(root == nullptr) return;
     if(root->left != nullptr) Postorder(root->left);
     if(root->right != nullptr) Postorder(root->right);
     cout<<root->data<<' ';
