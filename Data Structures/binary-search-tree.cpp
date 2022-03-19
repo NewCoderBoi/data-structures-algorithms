@@ -98,6 +98,64 @@ int Height(Node* root){
     return max(Height(root->left), Height(root->right))+1;
 }
 
+// Delete a node in BST - First find element to be deleted. Then there are 3 cases -
+// Case 1 - Delete a node with no children (Leaf node) - This is simple. We just remove the link and free the memory allocated to the node.
+// Case 2 - Delete a node with 1 child - 
+// Here we make the parent of the node to be deleted point to the child of the node to be deleted. This preserves the BST property for the resulting tree.
+// Case 3 - Delete a node with 2 children -
+// Approach 1 - Here, we first find the minimum element in the right subtree of the node to be deleted, then make the node to be deleted have data equal to this minimum element that we found. We then traverse the right subtree till we find this minimum element, then we delete that element.
+// Approach 2 - Same as 1, but instead of min in right subtree, we use max of left subtree.
+
+// The Delete() function should return address of root node, because root can change.
+
+// Time Complexity - O(log n).
+// Space Complexity - O(log n).
+
+Node* FindMin(Node* root){
+    // Logic - The left most element of a BST is the minimum element of the BST. So we have to return the left most element.
+    if(root->left == nullptr) return root;
+    else return FindMin(root->left);
+}
+
+Node* Delete(Node* root, int data){
+    if(root == nullptr) return root;
+    if(data < root->data) root->left = Delete(root->left, data);
+    else if (data > root->data) root->right = Delete(root->right, data);
+    else { // Found data, now delete it.
+        // Case 1 - No children
+        if(root->left == nullptr && root->right==nullptr){
+            delete root;
+            root = nullptr;
+        }
+        // Case 2 - One child.
+        else if(root->left == nullptr){
+            Node* temp = root;
+            root = root->right;
+            delete temp;
+        }
+        else if(root->right == nullptr){
+            Node* temp = root;
+            root = root->left;
+            delete temp;
+        }
+        // Case 3 -  2 children.
+        else {
+            Node* temp = FindMin(root->right);
+            root->data = temp->data;
+            root->right = Delete(root->right, temp->data);
+        }
+        
+    }
+    return root;
+}
+
+void Inorder(Node* root){
+    if(root == nullptr) return;
+    if(root->left != nullptr) Inorder(root->left);
+    cout<<root->data<<' ';
+    if(root->right != nullptr) Inorder(root->right);
+}
+
 int main(){
     Iter_Insert(20);
     Iter_Insert(15);
@@ -118,8 +176,13 @@ int main(){
     Iter_Insert(66);
     Iter_Insert(149);
     Iter_Insert(169);
-    cout<<Search(343)<<'\n';
-    cout<<Iter_Min()->data<<'\n';
-    cout<<Iter_Max()->data<<'\n';
-    cout<<Height(p_root)<<'\n';
+    // cout<<Search(169)<<'\n';
+    // cout<<Iter_Min()->data<<'\n';
+    // cout<<Iter_Max()->data<<'\n';
+    // cout<<Height(p_root)<<'\n';
+    Inorder(p_root);
+    cout<<'\n';
+    Delete(p_root, 45);
+    Inorder(p_root);
+
 }
